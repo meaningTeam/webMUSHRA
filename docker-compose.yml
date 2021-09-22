@@ -7,5 +7,7 @@ services:
     volumes:
       - ./results:/var/www/html/results
       - ./configs:/var/www/html/configs
+      - ./lib:/var/www/html/lib
+      - ./design:/var/www/html/design
     ports:
       - "8000:80"

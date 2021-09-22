@@ -87,7 +87,7 @@ function addPagesToPageManager(_pageManager, _pages) {
         _pageManager.addPage(new SpatialPage(_pageManager, pageConfig, session, audioContext, config.bufferSize, audioFileLoader, errorHandler, config.language));
       } else if (pageConfig.type == "paired_comparison") {
         var pcPageManager = new PairedComparisonPageManager();
-        pcPageManager.createPages(_pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
+        pcPageManager.createPages(_pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language, config.remoteService);
         pcPageManager = null;
       } else if (pageConfig.type == "bs1116") {
         var bs1116PageManager = new BS1116PageManager();
@@ -189,7 +189,7 @@ function startup(config) {
 
   audioFileLoader = new AudioFileLoader(audioContext, errorHandler);
   mushraValidator = new MushraValidator(errorHandler);
-  dataSender = new DataSender(config);
+  dataSender = new DataSender(config, window.location.search);
 
   session = new Session();
   session.testId = config.testId;
